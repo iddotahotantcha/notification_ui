@@ -7,7 +7,10 @@ class NotificationScreen extends StatefulWidget {
   State<NotificationScreen> createState() => _NotificationScreenState();
 }
 
-class _NotificationScreenState extends State<NotificationScreen> {
+class _NotificationScreenState extends State<NotificationScreen>
+    with SingleTickerProviderStateMixin {
+  bool isExpanded = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,200 +35,133 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         height: 50.0,
                         width: 50.0,
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
+                          color: const Color.fromARGB(255, 219, 219, 219),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: const Icon(
                           Icons.notifications_none,
                           size: 30.0,
                         ),
                       ),
-                      title: Text(
+                      title: const Text(
                         "5 New Notifications",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      subtitle: Text(
+                      subtitle: const Text(
                         "What's new in your project?",
                         style: TextStyle(
                           color: Colors.grey,
                           fontSize: 15.0,
                         ),
                       ),
-                      trailing: CircleAvatar(
-                        child: Icon(
-                          Icons.keyboard_arrow_down,
-                          color: Colors.white,
-                          size: 30.0,
+                      trailing: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isExpanded = !isExpanded;
+                          });
+                        },
+                        child: CircleAvatar(
+                          child: Icon(
+                            isExpanded
+                                ? Icons.keyboard_arrow_up
+                                : Icons.keyboard_arrow_down,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
                         ),
                       ),
                     ),
-                    SizedBox(height: 15.0),
-                    ListTile(
-                      leading: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
-                          Icons.messenger_outline_sharp,
-                          size: 25.0,
-                        ),
-                      ),
-                      title: Text(
-                        "New Message!",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "Alex shared the project update.",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.0,
-                        ),
-                      ),
-                      trailing: Text(
-                        "Just Now",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0),
-                    ListTile(
-                      leading: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
-                          Icons.emoji_events_outlined,
-                          size: 30.0,
-                        ),
-                      ),
-                      title: Text(
-                        "Level Up!",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "You've Reached Senior Developper",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.0,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      trailing: Text(
-                        "32 min ago",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0),
-                    ListTile(
-                      leading: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
-                          Icons.access_time_rounded,
-                          size: 30.0,
-                        ),
-                      ),
-                      title: Text(
-                        "Reminder: Code Review",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "Frontend team code review in 15 min",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.0,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      trailing: Text(
-                        "1 hour ago",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0),
-                    ListTile(
-                      leading: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
-                          Icons.local_offer_outlined,
-                          size: 30.0,
-                        ),
-                      ),
-                      title: Text(
-                        "Special Offer!",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "Get 50% off on 1ndev/ui.",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.0,
-                        ),
-                      ),
-                      trailing: Text(
-                        "7 hours ago",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 15.0),
-                    ListTile(
-                      leading: Container(
-                        height: 50.0,
-                        width: 50.0,
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 219, 219, 219),
-                            borderRadius: BorderRadius.circular(10.0)),
-                        child: Icon(
-                          Icons.check_circle_outline,
-                          size: 30.0,
-                        ),
-                      ),
-                      title: Text(
-                        "Task Assigned!",
-                        style:
-                            TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(
-                        "New feature implementation",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15.0,
-                        ),
-                      ),
-                      trailing: Text(
-                        "10 Jan 2025",
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),
-                      ),
+                    AnimatedSize(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeInOut,
+                      child: isExpanded
+                          ? Column(
+                              children: [
+                                Divider(
+                                  color: const Color.fromARGB(255, 219, 219, 219),
+                                ),
+                                _buildNotificationTile(
+                                  icon: Icons.messenger_outline_sharp,
+                                  title: "New Message!",
+                                  subtitle: "Alex shared the project update.",
+                                  trailing: "Just Now",
+                                ),
+                                _buildNotificationTile(
+                                  icon: Icons.emoji_events_outlined,
+                                  title: "Level Up!",
+                                  subtitle: "You've Reached Senior Developer",
+                                  trailing: "32 min ago",
+                                ),
+                                _buildNotificationTile(
+                                  icon: Icons.access_time_rounded,
+                                  title: "Reminder: Code Review",
+                                  subtitle:
+                                      "Frontend team code review in 15 min",
+                                  trailing: "1 hour ago",
+                                ),
+                                _buildNotificationTile(
+                                  icon: Icons.local_offer_outlined,
+                                  title: "Special Offer!",
+                                  subtitle: "Get 50% off on 1ndev/ui.",
+                                  trailing: "7 hours ago",
+                                ),
+                                _buildNotificationTile(
+                                  icon: Icons.check_circle_outline,
+                                  title: "Task Assigned!",
+                                  subtitle: "New feature implementation",
+                                  trailing: "10 Jan 2025",
+                                ),
+                              ],
+                            )
+                          : Container(),
                     ),
                   ],
                 ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNotificationTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required String trailing,
+  }) {
+    return ListTile(
+      leading: Container(
+        height: 50.0,
+        width: 50.0,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 219, 219, 219),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        child: Icon(
+          icon,
+          size: 25.0,
+        ),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+      ),
+      subtitle: Text(
+        subtitle,
+        style: const TextStyle(
+            color: Colors.grey,
+            fontSize: 15.0,
+            overflow: TextOverflow.ellipsis),
+      ),
+      trailing: Text(
+        trailing,
+        style: const TextStyle(
+          color: Colors.grey,
         ),
       ),
     );
